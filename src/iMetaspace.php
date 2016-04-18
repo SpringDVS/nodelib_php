@@ -3,6 +3,8 @@
  * Author:  Charlie Fyvie-Gauld <cfg@zunautica.org>
  * License: Apache License, Version 2 (http://www.apache.org/licenses/LICENSE-2.0)
  */
+namespace SpringDvs;
+
 interface iMetaspace {
 	public function GsnResolve($metadata);
 }
