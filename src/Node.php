@@ -138,4 +138,32 @@ class Node {
 	public function updateState($state) {
 		$this->state = $state;
 	}
+	
+	/**
+	 * Generate a node-string format string of node
+	 * @return String
+	 */
+	public function to_node_string() {
+		return $this->springName . ',' . $this->hostName . ',' . $this->address;
+	}
+	
+	/**
+	 * Generate a node-register format string of node
+	 * @return String
+	 */
+	public function to_node_register() {
+		return $this->springName . ',' . $this->to_host_resource();
+	}
+	
+	/**
+	 * Generate a `hostname/resource` format for string of node
+	 * @return String
+	 */
+	public function to_host_resource() {
+		if(strlen($this->resource) == 0) {
+			return $this->hostName;
+		}
+		
+		return $this->hostName . '/' . $this->resource;
+	}
 }
