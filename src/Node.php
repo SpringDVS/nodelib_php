@@ -143,7 +143,7 @@ class Node {
 	 * Generate a node-string format string of node
 	 * @return String
 	 */
-	public function to_node_string() {
+	public function toNodeString() {
 		return $this->springName . ',' . $this->hostName . ',' . 
 				Node::addressToString($this->address);
 	}
@@ -152,15 +152,15 @@ class Node {
 	 * Generate a node-register format string of node
 	 * @return String
 	 */
-	public function to_node_register() {
-		return $this->springName . ',' . $this->to_host_resource();
+	public function toNodeRegister() {
+		return $this->springName . ',' . $this->toHostResource();
 	}
 	
 	/**
 	 * Generate a `hostname/resource` format for string of node
 	 * @return String
 	 */
-	public function to_host_resource() {
+	public function toHostResource() {
 		if(strlen($this->resource) == 0) {
 			return $this->hostName;
 		}
