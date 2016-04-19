@@ -23,6 +23,6 @@ interface iNetspace {
 	public function gtnGeosubs();
 	public function gtnGeosubRegister($node, $geosub);
 	public function gtnGeosubUnregister($node, $geosub);
-	public function gtnGeosubRootNodes($node, $geosub);
+	public function gtnGeosubRootNodes($geosub);
 	public function gtnGeosubNodeBySpringname($springname, $geosub);
 }
