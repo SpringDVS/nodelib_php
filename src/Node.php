@@ -176,4 +176,8 @@ class Node {
 				'.' . $address[2] .
 				'.' . $address[3];
 	}
+	
+	public static function addressFromString($address) {
+		return  array_map('intval', explode('.', $address));
+	}
 }
