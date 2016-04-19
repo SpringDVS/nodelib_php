@@ -144,7 +144,8 @@ class Node {
 	 * @return String
 	 */
 	public function to_node_string() {
-		return $this->springName . ',' . $this->hostName . ',' . $this->address;
+		return $this->springName . ',' . $this->hostName . ',' . 
+				Node::addressToString($this->address);
 	}
 	
 	/**
@@ -165,5 +166,14 @@ class Node {
 		}
 		
 		return $this->hostName . '/' . $this->resource;
+	}
+	
+	public static function addressToString($address) {
+		if(count($address) != 4) return "";
+		
+		return		  $address[0] . 
+				'.' . $address[1] .
+				'.' . $address[2] .
+				'.' . $address[3];
 	}
 }
