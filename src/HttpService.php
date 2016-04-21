@@ -18,14 +18,15 @@ class HttpService {
 		
 		$ch = curl_init();
 		$serial = $frame->serialise();
-	
+
 		curl_setopt($ch, CURLOPT_URL,            $address);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt($ch, CURLOPT_POST,           1 );
 		curl_setopt($ch, CURLOPT_POSTFIELDS,      bin2hex($serial));
 		curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/octet-stream')); 
 
-		$bytes = curl_exec($ch);
+		$hex = curl_exec($ch);
+		$bytes = \SpringDvs\hex_to_bin($hex);
 		return DvspPacket::deserialise($bytes);
 	}
 	
@@ -42,4 +43,17 @@ class HttpService {
 	static public function recvRaw() {
 		return file_get_contents('php://input');
 	}
+	
+	static public function jsonEncodePacket(\SpringDvs\DvspPacket &$packet) {
+		
+		switch($packet->header()->type) {
+			case DvspMsgType::gsn_response:
+				return $packet->json_encode(\SpringDvs\FrameResponse::contentType());
+			case DvspMsgType::gsn_registration:
+				return $packet->json_encode(\SpringDvs\FrameRegistration::contentType());				
+
+			default: return "{}";
+		}
+	}
 }
+
