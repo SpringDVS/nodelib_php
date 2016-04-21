@@ -10,7 +10,13 @@ class Config {
 	
 	public static $net = array (
 		'master' => "127.0.0.1",
+		'hostname' => "default.hst",
 		'service' => "http",
 	);
 	
 };
+
+
+function nodereg_from_config() {
+	return Config::$spec['springname'] . "," . Config::$spec['hostname'];
+}
