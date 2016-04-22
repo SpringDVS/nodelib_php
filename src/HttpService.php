@@ -48,9 +48,31 @@ class HttpService {
 		
 		switch($packet->header()->type) {
 			case DvspMsgType::gsn_response:
-				return $packet->json_encode(\SpringDvs\FrameResponse::contentType());
+				return $packet->jsonEncode(\SpringDvs\FrameResponse::contentType());
 			case DvspMsgType::gsn_registration:
-				return $packet->json_encode(\SpringDvs\FrameRegistration::contentType());				
+				return $packet->jsonEncode(\SpringDvs\FrameRegistration::contentType());
+			case DvspMsgType::gsn_resolution:
+				return $packet->jsonEncode(\SpringDvs\FrameResolution::contentType());
+			case DvspMsgType::gsn_state:
+				return $packet->jsonEncode(FrameStateUpdate::contentType());
+			case DvspMsgType::gsn_area:
+				return $packet->jsonEncode();
+			case DvspMsgType::gsn_node_info:
+				return $packet->jsonEncode(FrameNodeRequest::contentType());
+			case DvspMsgType::gsn_node_status:
+				return $packet->jsonEncode(FrameNodeStatus::contentType());
+			case DvspMsgType::gsn_request:
+				return $packet->jsonEncode(FrameRequest::contentType());
+			case DvspMsgType::gsn_type_request:
+				return $packet->jsonEncode(FrameTypeRequest::contentType());
+			case DvspMsgType::gsn_response_node_info:
+				return $packet->jsonEncode(FrameNodeInfo::contentType());
+			case DvspMsgType::gsn_response_network:
+				$packet->jsonEncode(FrameNetwork::contentType());
+			case DvspMsgType::gsn_response_high:
+				$packet->jsonEncode(FrameRequest::contentType());
+			case DvspMsgType::gtn_registration:
+				$packet->jsonEncode(FrameGtnRegistration::contentType());
 
 			default: return "{}";
 		}
