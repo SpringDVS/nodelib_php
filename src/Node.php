@@ -43,6 +43,15 @@ class Node {
 		return new Node($atoms[0], $atoms[1], $address, DvspService::unspecified, DvspNodeState::unspecified, DvspNodeType::undefined);
 	}
 	
+	public static function fromNoderegAddr($nodestr, $address) {
+		$atoms = explode(',', $nodestr);
+		if(count($atoms) != 2) {
+			return false;
+		}
+		
+		return new Node($atoms[0], $atoms[1], $address, DvspService::unspecified, DvspNodeState::unspecified, DvspNodeType::undefined);
+	}
+	
 	/**
 	 * Construct a node with just the Springname
 	 * 
