@@ -6,6 +6,7 @@ class Config {
 	public static $spec = array(
 		'hostname' => "Default",
 		'springname' => 'Dft',
+		'testing' => false,
 	);
 	
 	public static $net = array (
