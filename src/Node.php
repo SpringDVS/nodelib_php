@@ -31,6 +31,8 @@ class Node {
 	/**
 	 * Construct a node from a node-string format
 	 * 
+	 * node-string: springname,hostname,address[,geosub]
+	 * 
 	 * @param String $nodestr The node string to use
 	 * @return \SpringDvs\Node|boolean Filled out node otherwise false on error
 	 */
@@ -43,6 +45,15 @@ class Node {
 		return new Node($atoms[0], $atoms[1], $address, DvspService::unspecified, DvspNodeState::unspecified, DvspNodeType::undefined);
 	}
 	
+	/**
+	 * Construct a node from a node-reg format and address
+	 * 
+	 * node-reg: springname,hostname
+	 * 
+	 * @param String $nodestr The node string to use
+	 * @param array $address The address to set the node to
+	 * @return \SpringDvs\Node|boolean Filled out node otherwise false on error
+	 */
 	public static function fromNoderegAddr($nodestr, $address) {
 		$atoms = explode(',', $nodestr);
 		if(count($atoms) != 2) {
