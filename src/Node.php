@@ -189,4 +189,12 @@ class Node {
 	public static function addressFromString($address) {
 		return  array_map('intval', explode('.', $address));
 	}
+	
+	public static function geosubFromNodeRegister($nodereg) {
+		$atoms = explode(',', $nodereg);
+		
+		if(count($atoms) < 4) return false;
+
+		return $atoms[3];
+	}
 }
