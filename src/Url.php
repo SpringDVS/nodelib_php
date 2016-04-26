@@ -99,4 +99,8 @@ class Url {
 		
 		return $url;
 	}
+	
+	public function pop() {
+		array_pop($this->staticRoute);
+	}
 }
