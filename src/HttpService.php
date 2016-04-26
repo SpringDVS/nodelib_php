@@ -14,19 +14,26 @@ class HttpService {
 	 * @param string $address
 	 * @return DvspPacket
 	 */
-	static public function sendPacket(DvspPacket $frame, $address) {
+	static public function sendPacket(DvspPacket $frame, $address, $hostres) {
 		
-		$ch = curl_init();
+		$ch = curl_init($hostres);
 		$serial = $frame->serialise();
-
-		curl_setopt($ch, CURLOPT_URL,            $address);
+		
+		//curl_setopt($ch, CURLOPT_URL,            $address);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt($ch, CURLOPT_POST,           1 );
+		curl_setopt($ch, CURLOPT_USERAGENT,           "WebSpringDvs" );
 		curl_setopt($ch, CURLOPT_POSTFIELDS,      bin2hex($serial));
-		curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/octet-stream')); 
-
+		curl_setopt($ch, CURLOPT_HTTPHEADER,     array(
+													'Content-Type: application/octet-stream', 
+													'User-Agent: WebSpringDvs/0.1')); 
 		$hex = curl_exec($ch);
-		$bytes = \SpringDvs\hex_to_bin($hex);
+		
+		try {
+			$bytes = \SpringDvs\hex_to_bin($hex);
+		} catch(\Exception $e) {
+			return false;
+		}
 		return DvspPacket::deserialise($bytes);
 	}
 	
