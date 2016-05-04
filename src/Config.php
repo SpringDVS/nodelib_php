@@ -28,12 +28,14 @@ class Config {
 	 * - hostname => Hostname of the root node
 	 * - service => The service protocol of the root node
 	 * - geosub => The geosub the node is connected to
+	 * - geotop => The geotop the node GSN is a part of
 	 */
 	public static $net = array (
 		'master' => "127.0.0.1",
 		'hostname' => "default.hst",
 		'service' => "http",
 		'geosub' => "gsndft",
+		'geotop' => "gtndft,"
 	);
 	
 };
@@ -41,4 +43,8 @@ class Config {
 
 function nodereg_from_config() {
 	return Config::$spec['springname'] . "," . Config::$spec['hostname'];
+}
+
+function nodeurl_from_config() {
+	return Config::$spec['springname'] . "." . Config::$net['geosub'] . "." . Config::$net['geotop'];
 }
