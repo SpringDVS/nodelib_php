@@ -75,11 +75,13 @@ class HttpService {
 			case DvspMsgType::gsn_response_node_info:
 				return $packet->jsonEncode(FrameNodeInfo::contentType());
 			case DvspMsgType::gsn_response_network:
-				$packet->jsonEncode(FrameNetwork::contentType());
+				return $packet->jsonEncode(FrameNetwork::contentType());
 			case DvspMsgType::gsn_response_high:
-				$packet->jsonEncode(FrameRequest::contentType());
+				return $packet->jsonEncode(FrameRequest::contentType());
+			case DvspMsgType::gsn_response_status:
+				return $packet->jsonEncode(FrameNodeStatus::contentType());
 			case DvspMsgType::gtn_registration:
-				$packet->jsonEncode(FrameGtnRegistration::contentType());
+				return $packet->jsonEncode(FrameGtnRegistration::contentType());
 
 			default: return "{}";
 		}
