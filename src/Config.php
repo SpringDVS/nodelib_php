@@ -10,9 +10,9 @@ class Config {
 	 * 
 	 * - hostname => Node's hostname
 	 * - springname => Node's springname
+	 * - password => Password for node administrator
 	 * - token => Node's registration token
 	 * - testing => Toggle whether node is in testing mode
-	 * 
 	 */
 	public static $spec = array(
 		'hostname' => "Default",
