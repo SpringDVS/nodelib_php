@@ -10,13 +10,16 @@ class Config {
 	 * 
 	 * - hostname => Node's hostname
 	 * - springname => Node's springname
+	 * - token => Node's registration token
 	 * - testing => Toggle whether node is in testing mode
 	 * 
 	 */
 	public static $spec = array(
 		'hostname' => "Default",
 		'springname' => 'Dft',
+		'token' => '897316929176464ebc9ad085f31e7284',
 		'testing' => false,
+		'password' => "pass"
 	);
 	
 	/**
