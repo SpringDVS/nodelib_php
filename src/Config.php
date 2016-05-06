@@ -17,7 +17,7 @@ class Config {
 	public static $spec = array(
 		'hostname' => "Default",
 		'springname' => 'Dft',
-		'token' => '897316929176464ebc9ad085f31e7284',
+		'token' => '3858f62230ac3c915f300c664312c63f',
 		'testing' => false,
 		'password' => "pass"
 	);
