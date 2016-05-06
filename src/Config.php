@@ -9,6 +9,7 @@ class Config {
 	 * Keys:
 	 * 
 	 * - hostname => Node's hostname
+	 * - resource => Service access resource (usually `spring/`)
 	 * - springname => Node's springname
 	 * - password => Password for node administrator
 	 * - token => Node's registration token
@@ -16,6 +17,7 @@ class Config {
 	 */
 	public static $spec = array(
 		'hostname' => "Default",
+		'resource' => "spring/",
 		'springname' => 'Dft',
 		'token' => '3858f62230ac3c915f300c664312c63f',
 		'testing' => false,
@@ -47,7 +49,8 @@ class Config {
 
 
 function nodereg_from_config() {
-	return Config::$spec['springname'] . "," . Config::$spec['hostname'];
+	$res = Config::$spec['resource'] == "" ? "" : "/".Config::$spec['resource'];
+	return Config::$spec['springname'] . "," . Config::$spec['hostname'].$res;
 }
 
 function nodeurl_from_config() {
