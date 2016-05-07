@@ -45,6 +45,21 @@ class Config {
 		'geotop' => "gtndft,"
 	);
 	
+	/**
+	 * System configuration
+	 * 
+	 * Keys:
+	 * 
+	 * - store => The path to the stores (outside public_html/)
+	 * - store_live => The path to the live production stores
+	 * - store_test => The path to the testing stores
+	 */
+	public static $sys = array (
+		'store' => './',
+		'store_live' => './live',
+		'store_test' => './test',
+	);
+	
 };
 
 
