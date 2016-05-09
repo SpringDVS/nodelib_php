@@ -15,7 +15,7 @@ class HttpService {
 	 * @return DvspPacket
 	 */
 	static public function sendPacket(DvspPacket $frame, $address, $hostres) {
-		
+				
 		$ch = curl_init($hostres);
 		$serial = $frame->serialise();
 		
@@ -28,9 +28,9 @@ class HttpService {
 													'Content-Type: application/octet-stream', 
 													'User-Agent: WebSpringDvs/0.1')); 
 		$hex = curl_exec($ch);
-		
+
 		try {
-			$bytes = \SpringDvs\hex_to_bin($hex);
+			$bytes = \SpringDvs\hex_to_bin(trim($hex));
 		} catch(\Exception $e) {
 			return false;
 		}
