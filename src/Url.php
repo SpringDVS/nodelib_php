@@ -32,7 +32,7 @@ class Url {
 		
 		$b = explode('/', $a[0]);
 		if(isset($b[1])) {
-			$this->res = $b[1];
+			$this->res = array_slice($b, 1);
 		}
 		
 		$c = explode(':', $b[0]);
