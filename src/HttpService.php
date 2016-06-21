@@ -14,7 +14,7 @@ class HttpService {
 	 * @param string $address
 	 * @return DvspPacket
 	 */
-	static public function sendPacket(Message $msg, $address, $host) {
+	public static function send(Message $msg, $address, $host) {
 				
 		$ch = curl_init($host.'/spring/');
 
@@ -36,8 +36,8 @@ class HttpService {
 	
 	}
 	
-	static public function jsonEncodePacket(Message $msg) {
-		return $msg->toJsonArray();
+	public static function jsonEncodePacket(Message $msg) {
+		return json_encode($msg->toJsonArray());
 	}
 }
 
