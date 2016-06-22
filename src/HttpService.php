@@ -23,11 +23,15 @@ class HttpService {
 		curl_setopt($ch, CURLOPT_POST,           1 );
 		curl_setopt($ch, CURLOPT_USERAGENT,           "WebSpringDvs" );
 		curl_setopt($ch, CURLOPT_POSTFIELDS,      $msg->toStr());
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
 		curl_setopt($ch, CURLOPT_HTTPHEADER,     array(
 													'Content-Type: text/plain', 
 													'User-Agent: WebSpringDvs/0.2')); 
 		$response = curl_exec($ch);
 
+		if($response === false) {
+			return false;
+		}
 		try {
 			return Message::fromStr($response);
 		} catch(\Exception $e) {
